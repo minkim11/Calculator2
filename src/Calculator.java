@@ -23,13 +23,13 @@ public class Calculator {
                 result = num1 / (double)num2;
                 break;
         }
-        resultList.add(result);
+        this.resultList.add(result);
         return result;
     }
 
     //Getter 메서드
     public ArrayList<Double> getResultList() {
-        return resultList;
+        return this.resultList;
     }
 
     // Setter 메서드
@@ -39,7 +39,7 @@ public class Calculator {
 
     // 가장 먼저 저장된 데이터 삭제 메서드
     public void removeResult() {
-        resultList.remove(0);
+        this.resultList.remove(0);
     }
 
 }
