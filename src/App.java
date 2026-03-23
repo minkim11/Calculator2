@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.List;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -57,7 +57,7 @@ public class App {
             System.out.println("결과 = " + result);
 
             // 결과 목록 조회(getter 활용)
-            ArrayList<Double> resultList = calculator.getResultList();
+            List<Double> resultList = calculator.getResultList();
             System.out.println("결과 목록 = " + resultList);
 
             // 결과 목록 수정(setter 활용)
@@ -86,6 +86,12 @@ public class App {
                 calculator.removeResult();
                 System.out.println("삭제 완료!");
             }
+
+            // 입력값보다 큰 결과값 조회
+            System.out.println("큰 결과값 조회");
+            double wantNum = sc.nextDouble();
+            List<Double> greaterList = calculator.getGreaterResult(wantNum);
+            System.out.println(greaterList);
 
             // 반복문 종료 분기점
             System.out.print("더 계산하시겠습니까? (exit 입력 시 종료): ");
