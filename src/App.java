@@ -12,13 +12,13 @@ public class App {
         // 사용자 입력 후 계산 기능 반복
         while (true) {
             // 입력 받을 변수 선언
-            int num1;
+            double num1;
             char op;
-            int num2;
+            double num2;
             // 사용자 입력 및 숫자 이외의 값 입력 시 예외 처리
             try {
                 System.out.print("첫 번째 숫자를 입력하세요.: ");
-                num1 = sc.nextInt();
+                num1 = sc.nextDouble();
                 System.out.print("사칙연산 기호를 입력하세요.: ");
                 String tempOp = sc.next();
                 if (tempOp.length() == 1) {
@@ -28,7 +28,7 @@ public class App {
                     continue;
                 }
                 System.out.print("두 번째 숫자를 입력하세요.: ");
-                num2 = sc.nextInt();
+                num2 = sc.nextDouble();
             } catch (InputMismatchException e) {
                 System.out.println("숫자를 입력하세요!");
                 sc.nextLine(); // 잘못된 입력값 제거(다음 입력 받기 위해)
@@ -39,12 +39,12 @@ public class App {
                 System.out.println("양의 정수를 입력하세요!");
                 continue;
             }
-            // 연산자 확인
+            // 연산자 확인 NPE 방지
             if (OperatorType.findOperator(op) == null) {
                 System.out.println("올바른 연산자를 입력하세요!");
                 continue;
             }
-            // 나눗셈 오류 방지
+            // 나눗셈 오류 방지 0나누기 방지
             if (("➗".equals(op + "") || op == '/') && num2 == 0) {
                 System.out.println("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
                 continue;

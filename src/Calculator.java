@@ -5,9 +5,12 @@ public class Calculator {
     private ArrayList<Double> resultList = new ArrayList<>();
 
     // 계산 메서드 (결과값 반환, 결과값 리스트에 추가)
-    public double calculate(int num1, int num2, char op) {
+    public <N extends Number>double calculate(N num1, N num2, char op) {
+        // 산술연산을 위해 형변환
+        double firstNum = num1.doubleValue();
+        double secondNum = num2.doubleValue();
         // OperatorType (Enum) 메서드 사용
-        double result = OperatorType.findOperator(op).cal(num1, num2);
+        double result = OperatorType.findOperator(op).cal(firstNum, secondNum);
         // 결과리스트에 추가 후 결과값 반환
         this.resultList.add(result);
         return result;
