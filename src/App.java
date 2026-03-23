@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
 
 public class App {
@@ -10,9 +9,6 @@ public class App {
         Calculator calculator = new Calculator(); // 계산기 클래스 객체화
 
         System.out.println("===== 자바 계산기 =====");
-        // 연산자 확인을 위한 리스트 생성
-        List<Character> opList = List.of('+', '-', '*', '/');
-
         // 사용자 입력 후 계산 기능 반복
         while (true) {
             // 입력 받을 변수 선언
@@ -24,7 +20,13 @@ public class App {
                 System.out.print("첫 번째 숫자를 입력하세요.: ");
                 num1 = sc.nextInt();
                 System.out.print("사칙연산 기호를 입력하세요.: ");
-                op = sc.next().charAt(0);
+                String tempOp = sc.next();
+                if (tempOp.length() == 1) {
+                    op = tempOp.charAt(0);
+                } else {
+                    System.out.println("연산자를 한글자만 입력하세요!");
+                    continue;
+                }
                 System.out.print("두 번째 숫자를 입력하세요.: ");
                 num2 = sc.nextInt();
             } catch (InputMismatchException e) {
@@ -38,12 +40,12 @@ public class App {
                 continue;
             }
             // 연산자 확인
-            if (!opList.contains(op)) {
-                System.out.println("올바른 연산자를 입력하세요! " + opList);
+            if (OperatorType.findOperator(op) == null) {
+                System.out.println("올바른 연산자를 입력하세요!");
                 continue;
             }
             // 나눗셈 오류 방지
-            if (op == '/' && num2 == 0) {
+            if (("➗".equals(op + "") || op == '/') && num2 == 0) {
                 System.out.println("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
                 continue;
             }

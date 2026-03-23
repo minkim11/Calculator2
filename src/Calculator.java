@@ -6,23 +6,9 @@ public class Calculator {
 
     // 계산 메서드 (결과값 반환, 결과값 리스트에 추가)
     public double calculate(int num1, int num2, char op) {
-        // 결과값 담을 변수 선언
-        double result = 0;
-        // 연산자 별 계산 기능
-        switch (op) {
-            case '+':
-                result = num1 + num2;
-                break;
-            case '-':
-                result = num1 - num2;
-                break;
-            case '*':
-                result = num1 * num2;
-                break;
-            case '/':
-                result = num1 / (double)num2;
-                break;
-        }
+        // OperatorType (Enum) 메서드 사용
+        double result = OperatorType.findOperator(op).cal(num1, num2);
+        // 결과리스트에 추가 후 결과값 반환
         this.resultList.add(result);
         return result;
     }
