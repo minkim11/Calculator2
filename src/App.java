@@ -70,13 +70,10 @@ public class App {
                     System.out.print("원하는 변경값을 입력하세요: ");
                     double changeResult = sc.nextDouble();
                     calculator.setResultList(index, changeResult);
-                    System.out.println("변경 완료!");
                 }
             } catch (InputMismatchException e) {
-                System.out.println("변경 실패! (번호와 값을 제대로 입력하세요.)");
+                System.out.println("변경 실패! (번호 또는 값을 제대로 입력하세요.)");
                 sc.nextLine();
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println("변경 실패! (목록에 없는 번호입니다.)");
             }
 
             // 결과값 삭제

@@ -25,7 +25,13 @@ public class Calculator {
 
     // Setter 메서드
     public void setResultList(int index, double changeResult) {
-        this.resultList.set(index, changeResult);
+        // 인덱스 예외 방지
+        if (index < 0 || resultList.size() - 1 < index) {
+            System.out.println("변경실패! (목록에 없는 번호! 범위 : 0 ~ " + (resultList.size() - 1) + ")");
+        } else {
+            this.resultList.set(index, changeResult);
+            System.out.println("변경완료!");
+        }
     }
 
     // 가장 먼저 저장된 데이터 삭제 메서드
