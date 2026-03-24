@@ -37,7 +37,7 @@ public enum OperatorType implements Cal{
 
     // 연산자 반환 메서드
     public static OperatorType findOperator(char operator) {
-        // values로 상수 배열 생성 후 반복문
+        // values()로 상수 배열 생성 후 반복문
         for (OperatorType op : OperatorType.values()) {
             // 입력된 연산자가 상수의 값과 같은지 확인 후 반환
             // char + "" = String

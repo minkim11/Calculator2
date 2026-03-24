@@ -7,8 +7,9 @@ public class Calculator {
     private List<Double> resultList = new ArrayList<>();
 
     // 계산 메서드 (결과값 반환, 결과값 리스트에 추가)
+    // 제네릭 사용, 문제 의도에 맞게 한건지 잘 모르겠습니다ㅠ
     public <N extends Number>double calculate(N num1, N num2, char op) {
-        // 산술연산을 위해 형변환
+        // 산술연산을 위해 Number 메서드 사용하여 형변환
         double firstNum = num1.doubleValue();
         double secondNum = num2.doubleValue();
         // OperatorType (Enum) 메서드 사용
@@ -23,7 +24,7 @@ public class Calculator {
         return this.resultList;
     }
 
-    // Setter 메서드
+    // Setter 메서드 (인덱스 번호 입력받고 해당 인덱스 연산결과 수정)
     public void setResultList(int index, double changeResult) {
         // 인덱스 예외 방지
         if (index < 0 || resultList.size() - 1 < index) {
@@ -40,11 +41,11 @@ public class Calculator {
     }
 
     // 입력값보다 큰 결과값 조회 메서드, 람다 스트림 사용
-    public List<Double> getGreaterResult(double num) {
+    public void getGreaterResult(double num) {
         List<Double> greaterList = this.resultList.stream()
                 .filter(result -> result > num)
                 .collect(Collectors.toList());
-        return greaterList;
+        System.out.println(greaterList);
     }
 
 }

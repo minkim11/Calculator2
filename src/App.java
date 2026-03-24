@@ -21,6 +21,7 @@ public class App {
                 num1 = sc.nextDouble();
                 System.out.print("사칙연산 기호를 입력하세요.: ");
                 String tempOp = sc.next();
+                // +-, -/**@ 등 여러 글자 입력 방지
                 if (tempOp.length() == 1) {
                     op = tempOp.charAt(0);
                 } else {
@@ -39,7 +40,7 @@ public class App {
                 System.out.println("양의 정수를 입력하세요!");
                 continue;
             }
-            // 연산자 확인 NPE 방지
+            // 연산자 확인, OperatorType의 cal 메서드 NPE 방지
             if (OperatorType.findOperator(op) == null) {
                 System.out.println("올바른 연산자를 입력하세요!");
                 continue;
@@ -50,7 +51,7 @@ public class App {
                 continue;
             }
 
-            // 계산기 클래스의 메서드 사용
+            // Calculator 클래스의 메서드 사용
             double result = calculator.calculate(num1, num2, op);
 
             // 결과값 출력
@@ -76,7 +77,7 @@ public class App {
                 sc.nextLine();
             }
 
-            // 결과값 삭제
+            // 첫번째 결과값 삭제
             System.out.print("첫번째 결과값을 삭제하시겠습니까? (yes 입력 시 진행): ");
             String removeCheck = sc.next();
             if (removeCheck.equals("yes")) {
@@ -85,10 +86,19 @@ public class App {
             }
 
             // 입력값보다 큰 결과값 조회
-            System.out.println("큰 결과값 조회");
-            double wantNum = sc.nextDouble();
-            List<Double> greaterList = calculator.getGreaterResult(wantNum);
-            System.out.println(greaterList);
+            System.out.print("입력값보다 큰 결과값 조회하시겠습니까? (yes 입력 시 진행): ");
+            String greaterCheck = sc.next();
+            try {
+                if (greaterCheck.equals("yes")) {
+                    System.out.println("숫자 입력: ");
+                    double wantNum = sc.nextDouble();
+                    calculator.getGreaterResult(wantNum);
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("조회 실패! (숫자를 입력하세요.)");
+                sc.nextLine();
+            }
+
 
             // 반복문 종료 분기점
             System.out.print("더 계산하시겠습니까? (exit 입력 시 종료): ");
